@@ -6,26 +6,24 @@ function solution(n, lost, reserve) {
     
     // 반대로 잃어버렸지만 여벌이 있는 사람을 제외한다.
     const lostR = lost.filter((l) => !reserve.includes(l))
-    console.log('진짜 : ', hasR, lostR) // [23] [14] / has[35] lost[124] 
+    console.log('진짜 : ', hasR, lostR)
     
     // 앞사람이 뒷사람에게 빌려준다.
-    for(let h of hasR) {//4
-       if(lostR.includes(h+1)) {//
+    for(let h of hasR) {
+       if(lostR.includes(h+1)) {
            if(h>1 && lostR.includes(h-1) && hasR.includes(h+2)) break; // 앞사람도 잃어버렸고 뒷뒷사람이 갖고있으면 빌려주면 안됨
               lostR[lostR.indexOf(h+1)] = 0; // 잃어버린 사람 배열에서 제거
               hasR[hasR.indexOf(h)] = 0; // 준 사람도 제거
        }
     }
-    console.log('앞->뒤 : ',hasR, lostR) // [2] [1] / lost[124] has[35]
+    console.log('앞->뒤 : ',hasR, lostR)
     
     // 뒷사람이 앞사람에게 빌려준다.
-    for(let h of hasR) {//3
+    for(let h of hasR) {
         console.log(hasR[0], hasR.length)
-       if(lostR.includes(h-1) && h>1) {//2
-          // if(lostR.includes(h+1)) { // 뒷사람도 잃어버렸으면 빌려주면 안됨
+       if(lostR.includes(h-1) && h>1) {
            lostR[lostR.indexOf(h-1)] = 0; // 잃어버린 사람 배열에서 제거
            hasR[hasR.indexOf(h)] = 0; // 준 사람도 제거
-          // }
        }
     }
     console.log('뒤->앞 : ',hasR, lostR)
