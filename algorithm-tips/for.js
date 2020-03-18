@@ -16,3 +16,18 @@ for(let item of arr){
  * splice, pop, shift처럼 아이템을 삭제하는 대신
  * 값이 없음을 표현하는 값을 대입해서 사용하자.
  */
+
+ /**
+  * for of와 for in의 차이
+  */
+const arr2 = ['a', 'b', 'c'];
+for(const item in arr2){
+    console.log('in', item); // 0 1 2
+}
+for(const item of arr2){
+    console.log('of', item); // a b c
+}
+/**
+ * for in에서의 item은 배열의 index다.
+ * for of에서의 item은 배열의 객체다.
+ */
