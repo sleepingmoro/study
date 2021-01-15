@@ -1,3 +1,4 @@
+// https://leetcode.com/explore/featured/card/top-interview-questions-easy/92/array/567/
 /**
  * @param {number[]} nums
  * @param {number} target
