@@ -7,23 +7,24 @@ var isValidSudoku = function (board) {
   let boxArr = [[], [], []];
   for (let i = 0; i < 9; i++) {
     // test rows
-    if (!isUniq(removeDot(board[i]))) return false;
+    if (!isUniq(board[i].filter((item) => item !== "."))) return false;
 
-    // test columns
+    // make column Array
     const columnArr = [];
-    for (let j = 0; j < 9; j++) {
-      if (board[j][i] !== ".") columnArr.push(board[j][i]);
-    }
-    if (!isUniq(columnArr)) return false;
-
-    // test boxes
     for (let j = 0; j < 9; j++) {
       const item = board[j][i];
       if (item === ".") continue;
+      if (board[j][i] !== ".") columnArr.push(item);
+
+      // make box Array
       if (j < 3) boxArr[0].push(item);
       if (2 < j && j < 6) boxArr[1].push(item);
       if (5 < j && j < 9) boxArr[2].push(item);
     }
+
+    // test columns
+    if (!isUniq(columnArr)) return false;
+    // test boxes
     if (i % 3 === 2) {
       if (!isUniq(boxArr[0]) || !isUniq(boxArr[1]) || !isUniq(boxArr[2]))
         return false;
@@ -37,11 +38,6 @@ var isValidSudoku = function (board) {
 var isUniq = (noDotArr) => {
   const noDup = Array.from(new Set(noDotArr));
   return noDotArr.length === noDup.length;
-};
-
-var removeDot = (arr) => {
-  const noDot = arr.filter((item) => item !== ".");
-  return noDot;
 };
 
 /**
