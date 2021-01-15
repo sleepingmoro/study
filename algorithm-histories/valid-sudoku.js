@@ -9,25 +9,18 @@ var isValidSudoku = function (board) {
     // test rows
     if (!isUniq(board[i].filter((item) => item !== "."))) return false;
 
-    // make column Array
     const columnArr = [];
     for (let j = 0; j < 9; j++) {
       const item = board[j][i];
       if (item === ".") continue;
-      if (board[j][i] !== ".") columnArr.push(item);
-
-      // make box Array
-      if (j < 3) boxArr[0].push(item);
-      if (2 < j && j < 6) boxArr[1].push(item);
-      if (5 < j && j < 9) boxArr[2].push(item);
+      columnArr.push(item); // make column Array
+      boxArr[Math.floor(j / 3)].push(item); // make box Array
     }
 
-    // test columns
-    if (!isUniq(columnArr)) return false;
-    // test boxes
+    if (!isUniq(columnArr)) return false; // test columns
     if (i % 3 === 2) {
-      if (!isUniq(boxArr[0]) || !isUniq(boxArr[1]) || !isUniq(boxArr[2]))
-        return false;
+      // test boxes
+      if (boxArr.some((b) => !isUniq(b))) return false;
       boxArr = [[], [], []];
     }
   }
