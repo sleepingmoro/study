@@ -49,3 +49,8 @@ const num = 1.12345;
 num.toFixed(3); // "1.123" string타입임에 유의
 num.toFixed(0); // "1"
 num.toFixed(7); // "1.1234500"
+
+const b = 1.99;
+b.toFixed(1); // "2.0" 반올림 되는것에 유의
+b.toFixed(2); // "1.99" 
+b.toFixed(0) // "2"
