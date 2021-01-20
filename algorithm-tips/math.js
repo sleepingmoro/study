@@ -42,3 +42,10 @@ Math.ceil(0.95); // 1
 Math.ceil(4); // 4
 Math.ceil(7.004); // 8
 Math.ceil(-0.95); // -0
+
+
+// 소수점 자릿수 지정(자르기)
+const num = 1.12345;
+num.toFixed(3); // "1.123" string타입임에 유의
+num.toFixed(0); // "1"
+num.toFixed(7); // "1.1234500"
